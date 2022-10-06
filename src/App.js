@@ -1,25 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 
-function App() {
+
+const products = [
+  {
+    id: 1,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 2,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 3,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 4,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 5,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 6,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 7,
+    title: 'bike',
+    price: '$500'
+  },
+  {
+    id: 8,
+    title: 'bike',
+    price: '$500'
+  }
+]
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      
+      <div id="cardsContainer" className="cards-container">
+        {products.map(product => (
+            <Home
+              key={product.id}
+              title={product.title}
+              price={product.price}
+            />
+        ))}
+      </div>
+    </>
   );
 }
-
-export default App;

@@ -1,0 +1,45 @@
+@import "../../App.css";
+
+.form-container {
+  position: absolute;
+  width: 200px;
+  top: 60px;
+  right: 25px;
+  padding: 25px;
+  border: 1px solid var(--very-light-pink);
+  border-radius: 6px;
+  background-color: var(--white);
+}
+.form-container h2 {
+  font-size: var(--lg);
+  color: var(--black);
+  font-weight: bold;
+  margin: 0 !important;
+}
+.my-form input {
+  width: 100%;
+  font-size: var(--sm);
+  margin-top: 7px;
+}
+.my-form input:first-child {
+  margin-top: 15px;
+}
+#formBtn {
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--hospital-green);
+  border: 1px solid var(--hospital-green);
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 7px;
+  cursor: pointer;
+
+  /* transition: .15s ease; */
+}
+#formBtn:hover {
+  border: 1px solid var(--hospital-green);
+  color: var(--hospital-green);
+  background-color: var(--white);
+
+  /* transition: .15s ease; */
+}
