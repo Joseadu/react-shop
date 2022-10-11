@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./header.css";
 
 // ===== IMAGES ===== //
@@ -10,7 +10,6 @@ import iconBurgerMenu from "../../assets/icons/icon_menu.svg";
 import Profile from "../Profile/Profile";
 import CartDetails from "../CartDetails/CartDetails";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import AddProductForm from "../AddProduct/AddProductForm";
 
 
 
@@ -18,7 +17,7 @@ export default function Header() {
   const [desktopMenu, setDesktopMenu] = useState(false);
   const [cartDetails, setCartDetails] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
-  const [addProduct, setAddProduct] = useState(false);
+  
 
   const toggleDesktopMenu = () => {
     setDesktopMenu(!desktopMenu);
@@ -31,11 +30,43 @@ export default function Header() {
   const toggleBurgerMenu = () => {
     setBurgerMenu(!burgerMenu);
   };
-  
-  const toggleAddProduct = () => {
-    setAddProduct(!addProduct);
-  };
 
+
+
+  // USEREF - Para cerrar el componente ProductDetails cuando haces click fuera
+  let desktopMenuRef = useRef();
+
+  useEffect(() => {
+    let handlerDesktopMenu = (event) => {
+      if (!desktopMenuRef.current.contains(event.target)) {
+        setDesktopMenu(false)
+      }
+    };
+    document.addEventListener("mousedown", handlerDesktopMenu);
+    return () => {
+      document.removeEventListener("mousedown", handlerDesktopMenu);
+    }
+  })
+  
+  
+  
+  // USEREF - Para cerrar el componente CartDetails cuando haces click fuera
+  let cartDetailsRef = useRef();
+
+  useEffect(() => {
+    let handlerCardDetails = (event) => {
+      if (!cartDetailsRef.current.contains(event.target)) {
+        setCartDetails(false)
+      }
+    };
+    document.addEventListener("mousedown", handlerCardDetails);
+    return () => {
+      document.removeEventListener("mousedown", handlerCardDetails);
+    }
+  })
+
+
+  // ========== RETORNO DEL COMPONENTE
   return (
     <nav>
       {/* BURGER MENU MOBILE */}
@@ -43,15 +74,6 @@ export default function Header() {
 
       {/* OPEN BURGER MENU */}
       {burgerMenu ? <BurgerMenu /> : ''}
-
-
-      {/* ADD PRODUCT BUTTON POS ABSOLUTE */}
-      <div className="mi-boton">
-        <button onClick={toggleAddProduct} id="openProductForm">Add Product</button>
-      </div>
-
-      {/* OPEN ADD PRODUCT FORM */}
-      {addProduct ? <AddProductForm /> : ''}
 
       {/* NAVBAR ESCRITORIO */}
       <div className="navbar-left">
@@ -87,7 +109,9 @@ export default function Header() {
           </li>
 
           {/* === ABRIR MENU DE PERFIL con toggleDesktopMenu(); === */}
-          {desktopMenu ? <Profile /> : ''}
+          <div ref={desktopMenuRef}>
+            {desktopMenu ? <Profile /> : ''}
+          </div>
 
 
           {/* === CARRITO DE COMPRAS === */}
@@ -98,7 +122,9 @@ export default function Header() {
         </ul>
 
         {/* === ABRIR CARRITO DE COMPRAS === */}
-        {cartDetails ? <CartDetails /> : '' }
+        <div ref={cartDetailsRef}>
+          {cartDetails ? <CartDetails /> : '' }
+        </div>
       </div>
     </nav>
   );

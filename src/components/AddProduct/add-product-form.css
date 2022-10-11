@@ -2,7 +2,7 @@
 
 .form-container {
   position: absolute;
-  width: 200px;
+  width: 250px;
   top: 60px;
   right: 25px;
   padding: 25px;
@@ -20,6 +20,9 @@
   width: 100%;
   font-size: var(--sm);
   margin-top: 7px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--very-light-pink);
 }
 .my-form input:first-child {
   margin-top: 15px;
@@ -29,17 +32,17 @@
   color: var(--white);
   background-color: var(--hospital-green);
   border: 1px solid var(--hospital-green);
-  padding: 8px;
+  padding: 10px 14px;
   border-radius: 8px;
-  margin-top: 7px;
+  margin-top: 12px;
   cursor: pointer;
 
   /* transition: .15s ease; */
 }
-#formBtn:hover {
+/* #formBtn:hover {
   border: 1px solid var(--hospital-green);
   color: var(--hospital-green);
   background-color: var(--white);
 
-  /* transition: .15s ease; */
-}
+  transition: .15s ease;
+} */

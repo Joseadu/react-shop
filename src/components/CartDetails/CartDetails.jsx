@@ -1,10 +1,11 @@
 import React from "react";
 import './cart-details.css';
 
+// COMPONENTS
+import CartProducts from "../CartProducts/CartProducts";
+
 // ========== IMAGES
-import iconClose from '../../assets/icons/icon_close.png';
 import iconArrowLeft from '../../assets/icons/flechita.svg';
-import bike from '../../assets/img/bike.jpeg';
 
 export default function CartDetails() {
   return (
@@ -15,51 +16,18 @@ export default function CartDetails() {
       </div>
 
       <div className="my-order-content">
-        <div className="shopping-cart">
-          <figure>
-            <img
-              src={bike}
-              alt="bike"
-            />
-          </figure>
-          <p>Bike</p>
-          <p>$30,00</p>
-          <img src={iconClose} alt="close" />
-        </div>
-
-        <div className="shopping-cart">
-          <figure>
-            <img
-              src={bike}
-              alt="bike"
-            />
-          </figure>
-          <p>Bike</p>
-          <p>$30,00</p>
-          <img src={iconClose} alt="close" />
-        </div>
-
-        <div className="shopping-cart">
-          <figure>
-            <img
-              src={bike}
-              alt="bike"
-            />
-          </figure>
-          <p>Bike</p>
-          <p>$30,00</p>
-          <img src={iconClose} alt="close" />
-        </div>
-
-        <div className="order">
-          <p>
-            <span>Total</span>
-          </p>
-          <p>$560.00</p>
-        </div>
-
-        <button className="primary-button">Checkout</button>
+        <CartProducts />
       </div>
+
+      <div className="order">
+        <p>
+          <span>Total</span>
+        </p>
+        <p>$1500.00</p>
+      </div>
+
+      <button className="primary-button">Checkout</button>
+      
     </aside>
   );
 }
