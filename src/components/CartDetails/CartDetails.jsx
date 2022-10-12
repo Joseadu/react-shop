@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import './cart-details.css';
 
 // COMPONENTS
 import CartProducts from "../CartProducts/CartProducts";
 
+// HOOKS / CONTEXT
+import AppContext from "../../Context/AppContext";
+
 // ========== IMAGES
 import iconArrowLeft from '../../assets/icons/flechita.svg';
 
 export default function CartDetails() {
+  const { state } = useContext(AppContext)
+
   return (
     <aside id="productDetail" className="product-detail">
       <div className="title-container">
@@ -16,7 +21,9 @@ export default function CartDetails() {
       </div>
 
       <div className="my-order-content">
-        <CartProducts />
+        {state.cart.map(product => (
+          <CartProducts key={`cartProduct-${product.id}`} product={product} />
+        ))}
       </div>
 
       <div className="order">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./header.css";
 
 // ===== IMAGES ===== //
@@ -10,6 +10,9 @@ import iconBurgerMenu from "../../assets/icons/icon_menu.svg";
 import Profile from "../Profile/Profile";
 import CartDetails from "../CartDetails/CartDetails";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+
+// ===== HOOKS AND CONTEXT ===== //
+import AppContext from "../../Context/AppContext";
 
 
 
@@ -66,6 +69,10 @@ export default function Header() {
   })
 
 
+  // CART ICON COUNTER
+  const { state } = useContext(AppContext);
+
+
   // ========== RETORNO DEL COMPONENTE
   return (
     <nav>
@@ -117,7 +124,7 @@ export default function Header() {
           {/* === CARRITO DE COMPRAS === */}
           <li onClick={toggleCartDetails} id="navbarShoppingCart" className="navbar-shopping-cart">
             <img src={iconCart} alt="shopping cart" />
-            <div>2</div>
+            {state.cart.length > 0 ?  <div>{state.cart.length}</div> : null}
           </li>
         </ul>
 
