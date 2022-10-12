@@ -11,7 +11,13 @@ import AppContext from "../../Context/AppContext";
 import iconArrowLeft from '../../assets/icons/flechita.svg';
 
 export default function CartDetails() {
-  const { state } = useContext(AppContext)
+  const { state } = useContext(AppContext);
+
+  const sumTotal = () => {
+    const reducer = (acumulator, currentValue) => acumulator +currentValue.price;
+    const sum = state.cart.reduce(reducer, 0);
+    return sum;
+  }
 
   return (
     <aside id="productDetail" className="product-detail">
@@ -30,7 +36,7 @@ export default function CartDetails() {
         <p>
           <span>Total</span>
         </p>
-        <p>$1500.00</p>
+        <p>${sumTotal()}</p>
       </div>
 
       <button className="primary-button">Checkout</button>
