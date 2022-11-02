@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useGetProducts from "../../Hooks/useGetProducts";
 import Header from "../../components/Header/Header";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import AddProductForm from "../../components/AddProduct/AddProductForm";
+// import AddProductForm from "../../components/AddProduct/AddProductForm";
 
 // const products = [
 //   {
@@ -95,7 +95,7 @@ export default function Home() {
       </div>
 
       {/* OPEN ADD PRODUCT FORM */}
-      <div ref={AddProductFormRef}>{addProduct ? <AddProductForm /> : ""}</div>
+      {/* <div ref={AddProductFormRef}>{addProduct ? <AddProductForm /> : ""}</div> */}
     </>
   );
 }

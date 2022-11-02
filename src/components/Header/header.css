@@ -2,7 +2,7 @@
 
 .mi-boton {
   background-color: var(--hospital-green);
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 30px;
   border-radius: 8px;

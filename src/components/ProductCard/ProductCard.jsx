@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import "./product-card.css";
 import ProductDetails from "../ProductDetails/ProductDetails";
 
@@ -10,6 +10,7 @@ import AppContext from "../../Context/AppContext";
 export default function ProductCard({ product }) {
   // USESTATE - COMPROBANDO SI EL ESTADO DE PRODUCT DETAILS ES TRUE O FALSE
   const [productDetails, setProductDetails] = useState(false);
+
 
   // Función que hará de 'TOGGLE' para que aparezca y desaparezca el componente ProductDetails
   const toggleProductDetails = () => {
@@ -23,6 +24,21 @@ export default function ProductCard({ product }) {
     addToCart(item);
   };
 
+  // USEREF - Para cerrar el componente ProductDetails cuando haces click fuera
+  let productDetailsRef = useRef();
+  
+  useEffect(() => {
+    let handler = (event) => {
+      if (!productDetailsRef.current.contains(event.target)) {
+        setProductDetails(false)
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  })
+
   // ========= RETORNO DEL COMPONENTE
   return (
     <div className="product-card">
@@ -33,7 +49,7 @@ export default function ProductCard({ product }) {
       />
 
       {/* OPEN PRODUCT DETAILS */}
-      <div>
+      <div ref={productDetailsRef}>
         {productDetails ? (
           <ProductDetails
             setProductDetails={setProductDetails}
@@ -63,18 +79,3 @@ export default function ProductCard({ product }) {
     </div>
   );
 }
-
-// USEREF - Para cerrar el componente ProductDetails cuando haces click fuera
-// let productDetailsRef = useRef();
-
-// useEffect(() => {
-//   let handler = (event) => {
-//     if (!productDetailsRef.current.contains(event.target)) {
-//       setProductDetails(false)
-//     }
-//   };
-//   document.addEventListener("mousedown", handler);
-//   return () => {
-//     document.removeEventListener("mousedown", handler);
-//   }
-// })
