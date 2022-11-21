@@ -1,5 +1,5 @@
 import React from "react";
-import './cart-products.css'
+import './cart-products.scss';
 
 // IMAGES
 import iconClose from "../../assets/icons/icon_close.png";
